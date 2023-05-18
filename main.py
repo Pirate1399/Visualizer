@@ -1,28 +1,17 @@
 import os
-import sys
-
-from PyQt5.QtWidgets import QMainWindow, QWidget, QApplication, QVBoxLayout
-from PyQt5 import QtCore
+# import sys
+#
+# from PyQt5.QtWidgets import QMainWindow, QWidget, QApplication, QVBoxLayout
+# from PyQt5 import QtCore
 from PyQt5.QtGui import QFont, QFontDatabase, QImage, QPalette, QBrush
 
+from datetime import datetime
 
-# import sys
-# from PyQt5.QtCore import QFile, QTextStream
-# from PyQt5.QtWidgets import QApplication
-# import breeze_resources
-#
-# app = QApplication(sys.argv)
-# file = QFile(":/dark.qss")
-# file.open(QFile.ReadOnly | QFile.Text)
-# stream = QTextStream(file)
-# app.setStyleSheet(stream.readAll())
 
 ################################################################################################
 # Convert UI to PyQt5 py file
 ################################################################################################
 os.system("pyuic5 interface.ui -o interface.py")
-# os.system("pyuic5 -o analoggaugewidget_demo_ui.py analoggaugewidget_demo.ui")
-# os.system("pyuic5 -o analoggaugewidget_demo_ui.py analoggaugewidget_demo.ui.oQCkCR")
 
 ################################################################################################
 # Import the generated UI
@@ -49,11 +38,13 @@ class MainWindow(QMainWindow):
         self.ui.label_2.setFont(QFont(families[0], 50))
         self.ui.label_3.setFont(QFont(families[0], 50))
         self.ui.label_4.setFont(QFont(families[0], 50))
-        # self.ui.textEdit.setFont(QFont(families[0], 90))
+        self.ui.label_5.setText(f'{datetime.now().date()}')
+        self.ui.label_5.setFont(QFont(families[0], 40))
+        self.ui.label_6.setText(f'{datetime.now().time()}')
+        self.ui.label_6.setFont(QFont(families[0], 40))
+
         oimage = QImage('resources/sero_goluboj.jpg')
         soimage = oimage.scaled(self.size())
-
-
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(soimage))
         self.setPalette(palette)
@@ -62,22 +53,7 @@ class MainWindow(QMainWindow):
                                            [.1, Qt.yellow],
                                            [.15, Qt.green],
                                            [1, Qt.transparent]])
-
-
-
-
-
-        # self.ui.textEdit.setTextColor(QColor(0, 255, 0))
-        # self.ui.textEdit.setText("250")
-
-
-
-
-
-
-
-
-
+        self.ui.widget.units = 'km/h'
 
 
         ################################################################################################
