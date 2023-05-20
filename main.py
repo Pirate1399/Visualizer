@@ -31,23 +31,46 @@ class MainWindow(QMainWindow):
         ################################################################################################
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        """Установка шрифтов на лейблы"""
+
         id = QFontDatabase.addApplicationFont('fonts/pobeda-regular1.ttf')
         if id < 0: print("Error")
 
+        id2 = QFontDatabase.addApplicationFont('fonts/Disket-Mono-Bold.ttf') # жирный
+
         families = QFontDatabase.applicationFontFamilies(id)
-        self.ui.label.setFont(QFont(families[0], 50))
+        boldfamilies = QFontDatabase.applicationFontFamilies(id2)
+        self.ui.label.setFont(QFont(boldfamilies[0], 40))
+        self.ui.label.setStyleSheet('color:rgb[22, 242, 44]')
         self.ui.label_2.setFont(QFont(families[0], 50))
         self.ui.label_3.setFont(QFont(families[0], 50))
         self.ui.label_4.setFont(QFont(families[0], 50))
         self.ui.label_5.setText(f'{datetime.now().date()}')
-        self.ui.label_5.setFont(QFont(families[0], 40))
+        self.ui.label_5.setFont(QFont(boldfamilies[0], 25))
         self.ui.label_6.setText(f'{datetime.now().time()}')
-        self.ui.label_6.setFont(QFont(families[0], 40))
+        self.ui.label_6.setFont(QFont(boldfamilies[0], 25))
+        self.ui.label_7.setFont(QFont(families[0], 50))
+        self.ui.label_8.setFont(QFont(families[0], 50))
+        self.ui.label_9.setFont(QFont(families[0], 50))
+        self.ui.label_9.setFont(QFont(families[0], 50))
+        self.ui.label_10.setFont(QFont(families[0], 50))
+        # self.ui.label_9.setText('50')
+        # self.ui.label_8.setText('50')
+        # self.ui.label_10.setText('5000000')
+        # self.ui.label_7.setText('50')
+        win_size = self.size()
+        self.setMinimumSize(win_size)
+
+        """Установка заднего фона окна"""
+
         oimage = QImage('resources/sero_goluboj.jpg')
         soimage = oimage.scaled(self.size())
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(soimage))
         self.setPalette(palette)
+
+        """Установка темы спидометра + внешний радиус"""
         self.ui.widget.setGaugeTheme(3)
         self.ui.widget.set_scale_polygon_colors([[.00, Qt.red],
                                                  [.1, Qt.yellow],
