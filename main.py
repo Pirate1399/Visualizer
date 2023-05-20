@@ -3,10 +3,10 @@ import os
 #
 # from PyQt5.QtWidgets import QMainWindow, QWidget, QApplication, QVBoxLayout
 # from PyQt5 import QtCore
+
 from PyQt5.QtGui import QFont, QFontDatabase, QImage, QPalette, QBrush
 
 from datetime import datetime
-
 
 ################################################################################################
 # Convert UI to PyQt5 py file
@@ -33,6 +33,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         id = QFontDatabase.addApplicationFont('fonts/pobeda-regular1.ttf')
         if id < 0: print("Error")
+
         families = QFontDatabase.applicationFontFamilies(id)
         self.ui.label.setFont(QFont(families[0], 50))
         self.ui.label_2.setFont(QFont(families[0], 50))
@@ -42,7 +43,6 @@ class MainWindow(QMainWindow):
         self.ui.label_5.setFont(QFont(families[0], 40))
         self.ui.label_6.setText(f'{datetime.now().time()}')
         self.ui.label_6.setFont(QFont(families[0], 40))
-
         oimage = QImage('resources/sero_goluboj.jpg')
         soimage = oimage.scaled(self.size())
         palette = QPalette()
@@ -50,11 +50,10 @@ class MainWindow(QMainWindow):
         self.setPalette(palette)
         self.ui.widget.setGaugeTheme(3)
         self.ui.widget.set_scale_polygon_colors([[.00, Qt.red],
-                                           [.1, Qt.yellow],
-                                           [.15, Qt.green],
-                                           [1, Qt.transparent]])
+                                                 [.1, Qt.yellow],
+                                                 [.15, Qt.green],
+                                                 [1, Qt.transparent]])
         self.ui.widget.units = 'km/h'
-
 
         ################################################################################################
         # Show window
