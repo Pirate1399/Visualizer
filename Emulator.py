@@ -18,5 +18,5 @@ while True:
                 + str(randint(10000, 12000)).rjust(6, "0") # Actual_cuts_customer_1
                 +FILE[126:])
         f.close()
-    sleep(5)
+    sleep(2)
 
